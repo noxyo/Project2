@@ -1,14 +1,128 @@
 
 
+/---------------------------------------------\
+How to Run Project #2:
+
         >   rails s -b $IP -p $PORT
         >   sudo service mysql restart
         >   sudo service apache2 restart
         
 
+Web Urls:
+        } https://127.0.0.1:8081/phpmyadmin
+                l
+        } https://127.0.0.1/
 
---------------------------------
 
+\---------------------------------------------/
+
+/==========================================================\
+
+.-----------------------.
+|       STEP 1          |
+.-----------------------.
+MySQL & PHPMyAdmin Setup:
+
+MYSQL Command Line:
+
+        > create database railscms_development;
+        > create database railscms_test;
+        > CREATE USER 'railscms'@'localhost' IDENTIFIED BY 'railscms';
+
+        > grant all on railscms_development.* to 'railscms'@'localhost' IDENTIFIED BY "railscms";
+
+        > grant all on railscms_test.* to 'railscms'@'localhost' IDENTIFIED BY "railscms";
         
+        
+        
+PHP Myadmin:
+    
+        > # sudo apt-get install php-mbstring php7.0-mbstring php-gettext
+        > sudo nano /etc/apache2/ports.conf 
+        > sudo nano /etc/apache2/sites-available/001-cloud9.conf
+        > sudo service apache2 restart
+        > mysql-ctl install
+        > phpmyadmin-ctl install
+        > mysql-ctl start
+
+.-----------------------.
+|       STEP 2          |
+.-----------------------.
+
+    Configurar Servidor apache para porta 8081
+     // https://docs.c9.io/docs/multiple-ports
+        https://c9.io/blog/phpmyadmin/
+        
+        
+        
+    ----------------
+    Database MySQL:
+    > mysql
+    "> show databases;
+    "> create database railscms_development;
+    "> create database railscms_test;
+    "> grant all on raiscms_development.* to 'railscms'@'localhost';
+    "> grant all on raiscms_test.* to 'railscms'@'localhost';
+    
+    "> select host, user from mysql.user;
+    "> SET PASSWORD FOR 'railscms'@'localhost' = PASSWORD('railscms');
+    "> FLUSH Privileges;
+    
+
+
+\==========================================================/
+
+/==========================================================\
+
+
+Rails Gem Install & Info:
+
+.-----------------------.
+|       STEP 3          |
+.-----------------------.
+
+        > gem install mysql2
+        > sudo service apache2 stop
+        
+        > rails g controller home show
+        > rails g controller pages show
+
+
+    Links Importantes:
+            https://community.c9.io/t/setting-up-phpmyadmin/1723
+            https://community.c9.io/t/running-a-rails-app/1615
+            https://community.c9.io/t/setting-up-mysql/1718
+            http://stackoverflow.com/questions/34642050/cloud-9-c9-rails-unable-to-connect-to-mysql
+            http://qiita.com/isseikz/items/6e065b3501632fa711dd
+            
+            
+            Destroy Gem:
+            http://stackoverflow.com/questions/7798865/ruby-rails-remove-activeadmin-from-my-application
+            http://stackoverflow.com/questions/7755363/removing-activeadmin-resources
+            http://stackoverflow.com/questions/27993776/how-do-i-remove-resource-from-active-admin_users
+            https://github.com/activeadmin/activeadmin/issues/534
+            Activeadmin Info:
+            http://activeadmin.info/docs/9-batch-actions.html
+            http://docs.seattlerb.org/rubygems/
+            http://activeadmin.info/docs/documentation.html
+            http://stackoverflow.com/questions/5250362/how-to-remove-gem-from-ruby-on-rails-application
+            http://stackoverflow.com/questions/7590609/adding-new-admins-to-active-admins
+            http://code.tutsplus.com/tutorials/create-beautiful-administration-interfaces-with-active-admin--net-21729
+            https://github.com/activeadmin/activeadmin
+            https://github.com/activeadmin/activeadmin/issues/4286
+            
+            Gems:
+            https://rubygems.org/gems/activeadmin
+            https://rubygems.org/gems/rails
+            https://github.com/twbs/bootstrap-sass#b-compass-without-rails
+            http://stackoverflow.com/questions/4667150/what-is-the-best-way-to-uninstall-gems-from-a-rails3-projectii2
+   
+\==========================================================/
+
+/==========================================================\
+Rails/Rake Configs - Command Line:
+
+
         > rails g model section name:string
         > rake db:migrate
         > rails g model page title:string section_id:integer body:text order:integer is_published:boolean menu_display:boolean
@@ -30,5 +144,9 @@
                 //= require active_admin/editor/wysiwyg
         
         > rails g active_admin:editor
+        
+\==========================================================/
+
+
         
         
