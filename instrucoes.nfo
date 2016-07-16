@@ -1,0 +1,34 @@
+
+
+        >   rails s -b $IP -p $PORT
+        >   sudo service mysql restart
+        >   sudo service apache2 restart
+        
+
+
+--------------------------------
+
+        
+        > rails g model section name:string
+        > rake db:migrate
+        > rails g model page title:string section_id:integer body:text order:integer is_published:boolean menu_display:boolean
+        > rake db:migrate
+        > rails g model block title:string body:text position:string display:string show_title:boolean order:integer class_suffix:string is_published:boolean
+        > rake db:migrate
+        !> rails g migration addOrderToBlocks order:integer
+        > rake db:migrate
+        
+        --------------
+        
+        rails g active_admin:resource Section
+        rails g active_admin:resource Page
+        rails g active_admin:resource Block
+        
+        
+        -------------------- ActiveAdmin Editor
+        add to file:   /app/assets/stylesheets/application.css
+                //= require active_admin/editor/wysiwyg
+        
+        > rails g active_admin:editor
+        
+        
